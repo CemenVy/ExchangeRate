@@ -13,6 +13,8 @@
 		60DF4E1C2AB074E200E079B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DF4E1A2AB074E200E079B5 /* Main.storyboard */; };
 		60DF4E1E2AB074E300E079B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60DF4E1D2AB074E300E079B5 /* Assets.xcassets */; };
 		60DF4E212AB074E300E079B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DF4E1F2AB074E300E079B5 /* LaunchScreen.storyboard */; };
+		60DF4E292AB0754700E079B5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF4E282AB0754700E079B5 /* NetworkManager.swift */; };
+		60DF4E2B2AB0755C00E079B5 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF4E2A2AB0755C00E079B5 /* Rate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		60DF4E1D2AB074E300E079B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60DF4E202AB074E300E079B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60DF4E222AB074E300E079B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60DF4E282AB0754700E079B5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		60DF4E2A2AB0755C00E079B5 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,65 @@
 		60DF4E132AB074E200E079B5 /* ExchangeRate */ = {
 			isa = PBXGroup;
 			children = (
-				60DF4E142AB074E200E079B5 /* AppDelegate.swift */,
-				60DF4E162AB074E200E079B5 /* SceneDelegate.swift */,
-				60DF4E182AB074E200E079B5 /* ViewController.swift */,
-				60DF4E1A2AB074E200E079B5 /* Main.storyboard */,
-				60DF4E1D2AB074E300E079B5 /* Assets.xcassets */,
-				60DF4E1F2AB074E300E079B5 /* LaunchScreen.storyboard */,
-				60DF4E222AB074E300E079B5 /* Info.plist */,
+				60DF4E302AB0762E00E079B5 /* App */,
+				60DF4E312AB0763A00E079B5 /* ViewControllers */,
+				60DF4E2C2AB0756300E079B5 /* Models */,
+				60DF4E2D2AB075F000E079B5 /* Services */,
+				60DF4E2F2AB0761800E079B5 /* Storyboards */,
+				60DF4E2E2AB0760000E079B5 /* Resources */,
 			);
 			path = ExchangeRate;
+			sourceTree = "<group>";
+		};
+		60DF4E2C2AB0756300E079B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				60DF4E2A2AB0755C00E079B5 /* Rate.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		60DF4E2D2AB075F000E079B5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				60DF4E282AB0754700E079B5 /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		60DF4E2E2AB0760000E079B5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				60DF4E1D2AB074E300E079B5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		60DF4E2F2AB0761800E079B5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				60DF4E1A2AB074E200E079B5 /* Main.storyboard */,
+				60DF4E1F2AB074E300E079B5 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		60DF4E302AB0762E00E079B5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				60DF4E142AB074E200E079B5 /* AppDelegate.swift */,
+				60DF4E162AB074E200E079B5 /* SceneDelegate.swift */,
+				60DF4E222AB074E300E079B5 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		60DF4E312AB0763A00E079B5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				60DF4E182AB074E200E079B5 /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +192,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60DF4E292AB0754700E079B5 /* NetworkManager.swift in Sources */,
 				60DF4E192AB074E200E079B5 /* ViewController.swift in Sources */,
 				60DF4E152AB074E200E079B5 /* AppDelegate.swift in Sources */,
+				60DF4E2B2AB0755C00E079B5 /* Rate.swift in Sources */,
 				60DF4E172AB074E200E079B5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,12 +355,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Vydrin-S.V.ExchangeRate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -327,12 +386,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Vydrin-S.V.ExchangeRate";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
