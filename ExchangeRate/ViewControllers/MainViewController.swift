@@ -37,7 +37,7 @@ final class MainViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == 0 ? 3 : rates.count
+        section == Section.info.rawValue ? 3 : rates.count
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,7 +56,7 @@ final class MainViewController: UITableViewController {
         
         var content = cell.defaultContentConfiguration()
         
-        if indexPath.section == 0 {
+        if indexPath.section == Section.info.rawValue {
             switch indexPath.row {
             case 0:
                 content.text = "Последнее обновление курса"
@@ -70,13 +70,13 @@ final class MainViewController: UITableViewController {
             }
         }
         
-        if indexPath.section == 1 {
+        if indexPath.section == Section.currencies.rawValue {
             let currencies = Array(rates.keys).sorted()
             if indexPath.row < currencies.count {
                 let currency = currencies[indexPath.row]
                 if let exchangeRate = rates[currency] {
                     content.text = currency
-                    content.secondaryText = String(exchangeRate)
+                    content.secondaryText = String(format: "%.3f", exchangeRate)
                 }
             }
         }
@@ -85,15 +85,7 @@ final class MainViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var titleSection = ""
-        
-        switch section {
-        case 0:
-            titleSection = "Основная информация"
-        default:
-            titleSection = "Валюты"
-        }
-        return titleSection
+        section == Section.info.rawValue ? "Основная информация" : "Курс валют"
     }
 }
 
