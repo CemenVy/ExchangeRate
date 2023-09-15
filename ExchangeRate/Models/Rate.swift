@@ -14,3 +14,12 @@ struct Rate: Decodable {
     let rates: [String: Double]
 }
 
+enum Link {
+    case exchangeRatesUsdURL
+    
+    var url: URL {
+        switch self {
+        case .exchangeRatesUsdURL:
+            return URL(string: "https://open.er-api.com/v6/latest/USD")!
+        }
+    }

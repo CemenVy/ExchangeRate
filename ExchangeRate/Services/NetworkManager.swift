@@ -18,7 +18,7 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetch<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (Result<T, NetworkError>) -> Void) {
+    func fetchRate(from url: URL, completion: @escaping (Result<Rate, NetworkError>) -> Void) {
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data else {
                 completion(.failure(.noData))
@@ -29,7 +29,7 @@ final class NetworkManager {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let rate = try decoder.decode(T.self, from: data)
+                let rate = try decoder.decode(Rate.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(rate))
                 }
