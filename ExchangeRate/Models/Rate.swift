@@ -23,3 +23,4 @@ enum Link {
             return URL(string: "https://open.er-api.com/v6/latest/USD")!
         }
     }
+}
