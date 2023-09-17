@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum NetworkError: Error {
     case invalidURL
@@ -18,25 +19,17 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetch<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (Result<T, NetworkError>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else {
-                completion(.failure(.noData))
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let rate = try decoder.decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(rate))
+    func fetchRate(from url: URL, completion: @escaping (Result<Rate, AFError>) -> Void) {
+        AF.request(Link.exchangeRatesUsdURL.url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let jsonValue):
+                    let rateData = Rate.getRate(from: jsonValue)
+                    completion(.success(rateData))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            } catch {
-                completion(.failure(.decodingError))
             }
-            
-        } .resume()
     }
 }

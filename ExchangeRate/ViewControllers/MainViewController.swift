@@ -6,17 +6,7 @@
 //
 
 import UIKit
-
-enum Link {
-    case exchangeRatesUsdURL
-    
-    var url: URL {
-        switch self {
-        case .exchangeRatesUsdURL:
-            return URL(string: "https://open.er-api.com/v6/latest/USD")!
-        }
-    }
-}
+import Alamofire
 
 enum Section: Int, CaseIterable {
     case info
@@ -26,7 +16,7 @@ enum Section: Int, CaseIterable {
 final class MainViewController: UITableViewController {
     
     // MARK: - Private Properties
-    private var rate: Rate!
+    private var rate: Rate?
     private var rates: [String: Double] = [:]
     
     // MARK: - View Life Cycles
@@ -87,22 +77,26 @@ final class MainViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         section == Section.info.rawValue ? "Основная информация" : "Курс валют"
     }
-}
-
-// MARK: - Networking
-extension MainViewController {
+    
+    // MARK: - Private Methods
+    private func showAlert(with title: String, andMessage message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert,animated: true)
+    }
+    
+    // MARK: - Networking
     private func fetchRate() {
-        NetworkManager.shared.fetch(Rate.self, from: Link.exchangeRatesUsdURL.url) { [weak self] result in
-            switch result {
-            case .success(let rate):
-                self?.rate = rate
-                self?.rates = rate.rates
-                self?.tableView.reloadData()
-            case .failure(let error):
-                print(error)
+        NetworkManager.shared.fetchRate(from: Link.exchangeRatesUsdURL.url) { [unowned self] result in
+                switch result {
+                case .success(let jsonValue):
+                    self.rate = jsonValue
+                    self.rates = jsonValue.rates
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    showAlert(with: "Oops!", andMessage: error.localizedDescription)
+                }
             }
-        }
     }
 }
-
-
